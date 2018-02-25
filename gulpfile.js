@@ -1,13 +1,15 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
-var convertEncoding = require('gulp-convert-encoding');
-var replace = require('gulp-replace');
+    sass = require('gulp-sass');
+    convertEncoding = require('gulp-convert-encoding');
+    replace = require('gulp-replace');
+    minimist = require('minimist');
+
+var argv = minimist(process.argv.slice(2));
 
 gulp.task('default', function(){
     gulp.src('./src/app.scss')
-    .pipe(sass({style : 'nested'})) //o—ÍŒ`®‚Ìí—Ş@#nested, compact, compressed, expanded.
+    .pipe(sass({style : 'nested'}))
     .pipe(replace('UTF-8', 'shift_jis'))
     .pipe(convertEncoding({to: "shift_jis"}))
     .pipe(gulp.dest('./dist/'));
 });
-
